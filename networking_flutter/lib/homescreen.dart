@@ -1,12 +1,10 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:networking_flutter/detail.dart';
+import 'package:networking_flutter/controller/apicontroller.dart';
+import 'package:networking_flutter/view/detail.dart';
 import 'package:networking_flutter/model/git_api.dart';
-import 'package:http/http.dart' as http;
-import 'package:networking_flutter/service/api_call.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -22,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   TextEditingController namecontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    ApiService apiService = Provider.of<ApiService>(context);
+    ApiController apiController = Get.put(ApiController());
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
@@ -57,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 setState(() {
                   loading = true;
                 });
-                githubApi = await apiService
+                githubApi = await apiController
                     .github_call(namecontroller)
                     .whenComplete(() {
                   Navigator.push(

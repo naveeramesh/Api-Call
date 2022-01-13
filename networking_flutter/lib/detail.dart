@@ -19,11 +19,28 @@ class _DetailState extends State<Detail> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Container(
-        child: Text(widget.githubApi.name,
-            style: TextStyle(
-              color: Colors.white,
-            )),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Text(widget.githubApi.email,
+            //     style: const TextStyle(
+            //       color: Colors.white,
+            //     )),
+            Text(widget.githubApi.bio,
+                style: const TextStyle(
+                  color: Colors.white,
+                )),
+            Text(widget.githubApi.location,
+                style: const TextStyle(
+                  color: Colors.white,
+                )),
+            Text(widget.githubApi.name,
+                style: const TextStyle(
+                  color: Colors.white,
+                )),
+          ],
+        ),
       ),
     );
   }

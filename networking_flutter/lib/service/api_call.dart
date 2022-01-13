@@ -5,8 +5,9 @@ import 'package:networking_flutter/model/git_api.dart';
 import 'package:http/http.dart' as http;
 
 class ApiService {
-  Future<GithubApi> github_call() async {
-    const endpointUrl = "https://api.github.com/users/msramesh2k1";
+  Future<GithubApi> github_call(String name) async {
+    print(name);
+    String endpointUrl = "https://api.github.com/users/$name";
     http.Response response;
     response = await http.get(Uri.parse(endpointUrl));
     if (response.statusCode == 200) {

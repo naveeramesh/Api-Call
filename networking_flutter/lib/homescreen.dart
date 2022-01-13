@@ -17,6 +17,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   ApiService apiService = ApiService();
+  bool loading = false;
   late GithubApi githubApi;
   List<String> names = [
     "naveeramesh",
@@ -24,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
     "HarshCasper",
     "KamalSharma"
   ];
-  TextEditingController namecontroller = new TextEditingController();
+  TextEditingController namecontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,6 +59,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   hintStyle: GoogleFonts.lato(
                       color: Colors.white, fontWeight: FontWeight.bold)),
               onSubmitted: (namecontroller) async {
+                setState(() {
+                  loading = true;
+                });
                 githubApi = await apiService
                     .github_call(namecontroller)
                     .whenComplete(() {
@@ -65,6 +69,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       context,
                       MaterialPageRoute(
                           builder: (b) => Detail(githubApi: githubApi)));
+                  setState(() {
+                    loading = false;
+                  });
                 });
               }),
         ),
@@ -83,7 +90,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: GoogleFonts.lato(
                     color: Colors.white,
                     fontWeight: FontWeight.normal,
-                    fontSize: 25))
+                    fontSize: 25)),
+            const SizedBox(
+              height: 20,
+            ),
+            loading
+                ? const Center(
+                    child: CircularProgressIndicator(
+                      color: Colors.blue,
+                    ),
+                  )
+                : const SizedBox()
           ],
         ),
       ),

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:networking_flutter/model/git_api.dart';
 import 'package:http/http.dart' as http;
 
-class ApiService {
+class ApiService extends ChangeNotifier {
   Future<GithubApi> github_call(String name) async {
     print(name);
     String endpointUrl = "https://api.github.com/users/$name";

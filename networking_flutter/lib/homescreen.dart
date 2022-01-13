@@ -7,6 +7,7 @@ import 'package:networking_flutter/detail.dart';
 import 'package:networking_flutter/model/git_api.dart';
 import 'package:http/http.dart' as http;
 import 'package:networking_flutter/service/api_call.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -16,18 +17,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  ApiService apiService = ApiService();
   bool loading = false;
   late GithubApi githubApi;
-  List<String> names = [
-    "naveeramesh",
-    "msramesh2k1",
-    "HarshCasper",
-    "KamalSharma"
-  ];
   TextEditingController namecontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    ApiService apiService = Provider.of<ApiService>(context);
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(

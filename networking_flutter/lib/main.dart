@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:networking_flutter/service/api_call.dart';
+import 'package:provider/provider.dart';
 
 import 'homescreen.dart';
 
@@ -11,16 +13,17 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return ChangeNotifierProvider(
+      create: (context) => ApiService(),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const Loading(),
       ),
-      home: const Loading(),
     );
   }
 }
@@ -36,7 +39,7 @@ class _LoadingState extends State<Loading> {
   @override
   void initState() {
     Timer(
-        Duration(seconds: 2),
+        const Duration(seconds: 2),
         () => Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (b) => HomeScreen())));
     super.initState();
@@ -63,13 +66,6 @@ class _LoadingState extends State<Loading> {
                       color: Colors.white,
                       fontWeight: FontWeight.bold)),
             ),
-            // const Center(
-            //   child: CircularProgressIndicator(
-            //     strokeWidth: 2,
-            //     backgroundColor: Colors.white,
-            //     color: Colors.blue,
-            //   ),
-            // ),
           ],
         ));
   }

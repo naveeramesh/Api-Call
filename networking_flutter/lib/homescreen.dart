@@ -19,12 +19,6 @@ class _HomeScreenState extends State<HomeScreen> {
   ApiService apiService = ApiService();
   bool loading = false;
   late GithubApi githubApi;
-  List<String> names = [
-    "naveeramesh",
-    "msramesh2k1",
-    "HarshCasper",
-    "KamalSharma"
-  ];
   TextEditingController namecontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {

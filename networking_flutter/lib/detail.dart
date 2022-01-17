@@ -154,7 +154,7 @@ class _DetailState extends State<Detail> {
                     subtitle: Padding(
                       padding: const EdgeInsets.only(left: 20.0, top: 8),
                       child: Text(
-                        widget.githubApi.company,
+                        widget.githubApi.company ?? "No works mentioned currently",
                         style:
                             GoogleFonts.lato(color: Colors.grey, fontSize: 14),
                       ),
@@ -184,7 +184,7 @@ class _DetailState extends State<Detail> {
                     subtitle: Padding(
                       padding: const EdgeInsets.only(left: 20, top: 8),
                       child: Text(
-                        widget.githubApi.blog,
+                        widget.githubApi.blog ,
                         style:
                             GoogleFonts.lato(color: Colors.grey, fontSize: 14),
                       ),
